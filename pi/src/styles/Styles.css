@@ -1,0 +1,227 @@
+/* Imports */
+@import url("header.css");
+@import url("home.css");
+@import url("footer.css");
+
+/* ===========================
+   Styles.css - Global
+   =========================== */
+
+/* Variáveis principais */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #f59e0b;
+  --accent-color: #10b981;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --bg-light: #f8fafc;
+  --white: #ffffff;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --border-radius: 16px;
+  --gradient: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+/* Dark mode */
+body.dark-mode {
+  --primary-color: #38bdf8;
+  --primary-dark: #0ea5e9;
+  --secondary-color: #facc15;
+  --accent-color: #22c55e;
+  --text-dark: #f1f5f9;
+  --text-light: #94a3b8;
+  --bg-light: #0f172a;
+  --white: #1e293b;
+}
+
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--bg-light);
+  overflow-x: hidden;
+}
+
+/* Botão tema */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg);
+}
+
+/* Botão voltar topo */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+
+  #mobile_btn {
+    order: 2;
+  }
+
+  #theme-toggle {
+    order: 1;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .about-visual {
+    display: none;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .fa-solid,
+  .fas {
+    font-weight: 900;
+    color: var(--primary-color);
+  }
+
+  /* Menu Mobile */
+
+  #navlist,
+  #navbar .btn-default {
+    display: none;
+  }
+
+  #mobile_btn {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    padding: 0.3rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+
+  }
+
+  #mobile_btn:hover {
+    transform: scale(1.1);
+  }
+
+
+  #mobile_menu.active {
+    display: flex;
+    height: calc(70vh - 70px);
+    visibility: visible;
+
+  }
+
+  .btn-login {
+    display: none;
+  }
+
+  #theme-toggle {
+    color: var(--primary-color);
+  }
+
+  #mobile_nav_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 12px 0px;
+    position: center;
+    width: 100%;
+    top: 70px;
+    right: 0px;
+    height: calc(60vh - 70px);
+
+  }
+
+  #mobile_nav_list a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  #mobile_nav_list a {
+    color:var(--text-dark);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid grey;
+    background: transparent;
+  }
+
+  .dark-mode #mobile_nav_list a {
+    color: white;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid white;
+    background: transparent;
+  }
+}

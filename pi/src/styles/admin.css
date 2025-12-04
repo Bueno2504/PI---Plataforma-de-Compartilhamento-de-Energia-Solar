@@ -1,0 +1,1023 @@
+@import url(Styles.css);
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #f59e0b;
+    --accent-color: #10b981;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --border-radius: 16px;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+body.dark-mode {
+    --primary-color: #38bdf8;
+    --primary-dark: #0ea5e9;
+    --secondary-color: #facc15;
+    --accent-color: #22c55e;
+    --text-dark: #f1f5f9;
+    --text-light: #94a3b8;
+    --bg-light: #0f172a;
+    --white: #1e293b;
+    background: #232f43;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode header {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-container img {
+    width: 40px;
+    height: 40px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.user-greeting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    position: relative;
+}
+
+.user-greeting i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    order: -1;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg);
+}
+
+#admin_btn {
+    display: block;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    padding: 0.3rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+#admin_btn.active {
+    transform: rotate(180deg);
+}
+
+/* Menu Dropdown Admin */
+.admin-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+body.dark-mode .admin-menu {
+    background: var(--white);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.admin-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-item {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.menu-item:hover {
+    background: rgba(0, 48, 153, 0.158);
+}
+
+body.dark-mode .menu-item:hover {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.menu-item i {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item.logout {
+    color: #dc2626;
+}
+
+.menu-item.logout i {
+    color: #dc2626;
+}
+
+.menu-item.logout:hover {
+    background: #fee2e2;
+}
+
+body.dark-mode .menu-item.logout:hover {
+    background: rgba(220, 38, 38, 0.1);
+}
+
+.menu-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 8px 0;
+}
+
+body.dark-mode .menu-divider {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+    animation: slideIn 0.8s forwards ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .card {
+    background: var(--white);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.card-positive {
+    color: var(--accent-color);
+}
+
+/* ===========================
+   ESTILIZAÇÃO UNIFICADA DE TABELAS
+   =========================== */
+
+/* Container das seções com tabelas */
+.condominios-section,
+.section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 0 30px 0;
+    width: 100%;
+    overflow: hidden;
+    animation: slideIn 0.8s forwards ease-out;
+}
+
+body.dark-mode .condominios-section,
+body.dark-mode .section {
+    background: var(--white);
+}
+
+.section-f {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 0 30px 0;
+    width: 100%;
+    animation: slideIn 0.8s forwards ease-out;
+}
+
+body.dark-mode .section-f {
+    background: var(--white);
+}
+
+/* Headers das seções */
+.condominios-header,
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+body.dark-mode .condominios-header,
+body.dark-mode .section-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Títulos das seções */
+.condominios-header h2,
+.section-title {
+    font-size: 22px;
+    color: var(--text-dark);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.condominios-header h2 i,
+.section-title i {
+    color: var(--primary-color);
+    font-size: 24px;
+}
+
+/* Badge de contagem */
+.count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+
+/* Grid de condomínios e tabelas */
+.condominios-grid {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Tabelas - Estilo base unificado */
+.condominios-grid table,
+#moradoresTable,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    table-layout: auto;
+}
+
+/* Ajuste de larguras das colunas da tabela de condomínios */
+.condominios-grid table {
+    table-layout: fixed;
+}
+
+.condominios-grid th:nth-child(1),
+.condominios-grid td:nth-child(1) {
+    width: 20%;
+}
+
+.condominios-grid th:nth-child(2),
+.condominios-grid td:nth-child(2) {
+    width: 15%;
+}
+
+.condominios-grid th:nth-child(3),
+.condominios-grid td:nth-child(3) {
+    width: 12%;
+}
+
+.condominios-grid th:nth-child(4),
+.condominios-grid td:nth-child(4) {
+    width: 13%;
+}
+
+.condominios-grid th:nth-child(5),
+.condominios-grid td:nth-child(5) {
+    width: 25%;
+}
+
+.condominios-grid th:nth-child(6),
+.condominios-grid td:nth-child(6) {
+    width: 15%;
+}
+
+/* Cabeçalho das tabelas */
+.condominios-grid thead,
+#moradoresTable thead,
+thead {
+    background: #f8f9ff;
+}
+
+body.dark-mode .condominios-grid thead,
+body.dark-mode #moradoresTable thead,
+body.dark-mode thead {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+/* Células do cabeçalho */
+.condominios-grid th,
+#moradoresTable th,
+th {
+    padding: 15px;
+    text-align: left;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Alinhamento específico para colunas numéricas */
+.condominios-grid th:nth-child(3),
+.condominios-grid th:nth-child(4),
+.condominios-grid td:nth-child(3),
+.condominios-grid td:nth-child(4) {
+    text-align: center;
+}
+
+/* Coluna de progresso centralizada */
+.condominios-grid th:nth-child(5),
+.condominios-grid td:nth-child(5) {
+    text-align: center;
+    min-width: 200px;
+}
+
+/* Coluna de status centralizada */
+.condominios-grid th:nth-child(6),
+.condominios-grid td:nth-child(6) {
+    text-align: center;
+}
+
+/* Células do corpo */
+.condominios-grid td,
+#moradoresTable td,
+td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-dark);
+    vertical-align: middle;
+}
+
+body.dark-mode .condominios-grid td,
+body.dark-mode #moradoresTable td,
+body.dark-mode td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover nas linhas */
+.condominios-grid tbody tr:hover,
+#moradoresTable tbody tr:hover,
+tr:hover {
+    background: #f8f9ff;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+body.dark-mode .condominios-grid tbody tr:hover,
+body.dark-mode #moradoresTable tbody tr:hover,
+body.dark-mode tr:hover {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+/* Primeira coluna em destaque */
+.condominios-grid td:first-child,
+#moradoresTable td:first-child {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 180px;
+}
+
+/* Segunda coluna - CNPJ */
+.condominios-grid td:nth-child(2) {
+    min-width: 150px;
+    font-size: 14px;
+}
+
+/* Progress bar unificada */
+.condo-progress-cell,
+.progress-wrapper {
+    width: 100%;
+    padding: 10px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.progress-label span:first-child {
+    font-weight: 500;
+}
+
+.progress-label span:last-child {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+body.dark-mode .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+/* Status badges unificados */
+.condo-status-badge,
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.condo-status-badge i,
+.status-badge i {
+    font-size: 14px;
+}
+
+/* Status Ativo / Crédito - Verde */
+.condo-status-badge,
+.status-badge.status-credito,
+.status-positive {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 2px solid #10b981;
+}
+
+.condo-status-badge i,
+.status-badge.status-credito i {
+    color: #10b981;
+}
+
+/* Status Débito - Vermelho */
+.status-badge.status-debito,
+.status-negative {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #ef4444;
+}
+
+.status-badge.status-debito i {
+    color: #ef4444;
+}
+
+/* Hover nos badges */
+.condo-status-badge:hover,
+.status-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Saldo Positivo */
+.saldo-positivo {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.saldo-positivo strong {
+    color: #10b981;
+}
+
+/* Saldo Negativo */
+.saldo-negativo {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.saldo-negativo strong {
+    color: #ef4444;
+}
+
+/* Centralizar células específicas */
+.text-center {
+    text-align: center;
+}
+
+/* ===========================
+   TEMA ESCURO - TABELAS
+   =========================== */
+
+body.dark-mode .condo-status-badge,
+body.dark-mode .status-badge.status-credito,
+body.dark-mode .status-positive {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+    border-color: #10b981;
+}
+
+body.dark-mode .condo-status-badge i,
+body.dark-mode .status-badge.status-credito i {
+    color: #6ee7b7;
+}
+
+body.dark-mode .status-badge.status-debito,
+body.dark-mode .status-negative {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border-color: #ef4444;
+}
+
+body.dark-mode .status-badge.status-debito i {
+    color: #fca5a5;
+}
+
+body.dark-mode .saldo-positivo {
+    color: #6ee7b7 !important;
+    background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), transparent);
+}
+
+body.dark-mode .saldo-positivo strong {
+    color: #6ee7b7;
+}
+
+body.dark-mode .saldo-negativo {
+    color: #fca5a5 !important;
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.15), transparent);
+}
+
+body.dark-mode .saldo-negativo strong {
+    color: #fca5a5;
+}
+
+/* ===========================
+   ESTADO VAZIO
+   =========================== */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-light);
+}
+
+.empty-state-icon {
+    font-size: 64px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    font-size: 16px;
+    color: var(--text-light);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+select, input {
+    padding: 10px 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background: white;
+    color: var(--text-dark);
+}
+
+body.dark-mode select,
+body.dark-mode input {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+select:focus, input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.comparison-item {
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 10px;
+}
+
+body.dark-mode .comparison-item {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.comparison-label {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.comparison-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.savings {
+    color: var(--accent-color);
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Total Savings Section */
+.total-savings {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f0fdf4;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
+}
+
+body.dark-mode .total-savings {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.savings-label {
+    font-size: 14px;
+    color: #065f46;
+    margin-bottom: 5px;
+}
+
+body.dark-mode .savings-label {
+    color: var(--accent-color);
+}
+
+.savings-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.savings-since {
+    font-size: 13px;
+    color: #059669;
+    margin-top: 5px;
+}
+
+body.dark-mode .savings-since {
+    color: var(--accent-color);
+}
+
+/* Projection Section */
+.projection-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #eff6ff;
+    border-radius: 10px;
+}
+
+body.dark-mode .projection-section {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.projection-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e40af;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .projection-title {
+    color: var(--primary-color);
+}
+
+.projection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.projection-period {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.projection-amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e40af;
+}
+
+body.dark-mode .projection-amount {
+    color: var(--primary-color);
+}
+
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projection-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .section-header,
+    .condominios-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    select, input {
+        width: 100%;
+    }
+
+    .condominios-grid table,
+    #moradoresTable,
+    table {
+        font-size: 12px;
+    }
+
+    .condominios-grid th,
+    .condominios-grid td,
+    #moradoresTable th,
+    #moradoresTable td,
+    th, td {
+        padding: 10px 5px;
+    }
+
+    .section,
+    .section-f,
+    .condominios-section {
+        margin: 0 10px 20px 10px;
+        width: calc(100% - 20px);
+        padding: 20px 15px;
+    }
+
+    .admin-menu {
+        right: -10px;
+        min-width: 220px;
+    }
+
+    .condominios-header h2,
+    .section-title {
+        font-size: 18px;
+    }
+
+    .condominios-header h2 i,
+    .section-title i {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-value {
+        font-size: 28px;
+    }
+
+    .comparison-value {
+        font-size: 22px;
+    }
+
+    .savings-value {
+        font-size: 26px;
+    }
+
+    .projection-amount {
+        font-size: 18px;
+    }
+
+    .status-badge,
+    .condo-status-badge {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+    
+    .status-badge i,
+    .condo-status-badge i {
+        font-size: 12px;
+    }
+    
+    #moradoresTable td {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+
+    .progress-label {
+        font-size: 10px;
+    }
+
+    .count-badge {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+
+    .empty-state-icon {
+        font-size: 48px;
+    }
+
+    .empty-state h3 {
+        font-size: 20px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+    }
+}

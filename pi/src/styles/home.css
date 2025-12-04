@@ -1,0 +1,531 @@
+
+/* ===========================
+   Corpo principal
+   =========================== */
+
+/* HERO */
+
+.hero {
+    padding: 200px 5% 80px;
+    color: white;
+    text-align: center;
+    position: relative; 
+    overflow: hidden;
+
+    background: url('../Images/hero-background.jpg') no-repeat center center;
+    background-size: cover; 
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    
+    /* Gradiente padrão */
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+    
+    opacity: 0; 
+    animation: fadeIn 1.2s forwards ease-out;
+    animation-delay: 0.1s; 
+    z-index: 1; 
+    transition: background 0.6s ease; 
+}
+
+/* Gradiente para o Dark Mode */
+body.dark-mode .hero::before {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.8) 100%);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes heroFadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 4. animação */
+.hero-content > * {
+    opacity: 0; 
+    animation: heroFadeInSlide 0.8s forwards ease-out;
+}
+
+.hero-content h1 {
+    animation-delay: 0.5s; 
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+    animation-delay: 0.7s; 
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-content .hero-buttons {
+    animation-delay: 0.9s; 
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--primary-color);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+
+/* Stats */
+.stats {
+  padding: 60px 5%;
+  background: white;
+}
+
+body.dark-mode .stats {
+  background: var(--bg-light);
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.dark-mode .stat-item {
+  text-align: center;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  background: #1e293b;
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  background: var(--bg-light);
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* About */
+.about {
+  padding: 80px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+.about-image {
+    width: 110%; 
+    height: 440px;
+    border-radius: var(--border-radius);
+    
+    background: 
+        url('../Images/condominioSolar.jpg') no-repeat center center; 
+    background-size: cover; 
+    background-position: center; 
+    box-shadow: var(--shadow-lg); 
+}
+
+
+.features {
+  display: grid;
+  gap: 1rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+body.dark-mode .feature {
+  background: var(--white);
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Cards Sugestões */
+
+.feature {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+
+/* How it Works */
+.how-it-works {
+  padding: 80px 5%;
+  background: var(--bg-light);
+}
+
+.how-it-works-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.how-it-works-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  
+}
+
+.step {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+body.dark-mode .step {
+  background: var(--white);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+/* balão animado como funciona*/
+.how-it-works .step {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-it-works .step:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Testimonials */
+.testimonials {
+  padding: 80px 5%;
+  background: white;
+    
+}
+
+body.dark-mode .testimonials {
+  background: var(--white);
+}
+
+.testimonials-container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.testimonials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.stars {
+  color: var(--secondary-color);
+}
+
+/* Carrossel de Depoimentos */
+.carousel-wrapper {
+    position: relative;
+    max-width: 1200px; 
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 80px; 
+}
+
+.testimonials-grid {
+    display: flex; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; 
+    gap: 2rem;
+    padding-bottom: 1rem; 
+    scrollbar-width: none; 
+}
+
+
+.testimonial {
+    flex: 0 0 auto; 
+    width: calc(33.333% - 1.333rem); 
+    scroll-snap-align: start; 
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+
+@media (max-width: 992px) {
+    .testimonial {
+        width: calc(50% - 1rem); 
+    }
+}
+
+
+@media (max-width: 768px) {
+    .testimonial {
+        width: 100%; 
+    }
+    .carousel-wrapper {
+        padding: 0 20px; 
+    }
+}
+
+
+/* Estilo dos botões de controle do carrossel */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-control:hover {
+    background: var(--gradient); 
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-control.prev {
+    left: 0px;
+}
+
+.carousel-control.next {
+    right: 0px;
+}
+
+/* Estilo para Dark Mode */
+body.dark-mode .carousel-control {
+    background: var(--primary-color); 
+}
+body.dark-mode .carousel-control:hover {
+     background: var(--gradient);
+}
+body.dark-mode .testimonial {
+    background: var(--bg-light); 
+}
+
+/* FAQ */
+.faq {
+    padding: 80px 5%;
+    background: var(--bg-light);
+}
+
+.faq-container {
+    max-width: 1200px; /* Aumentamos o container para acomodar as 2 colunas */
+    margin: 0 auto;
+}
+
+.faq-container h2 {
+    font-size: 2.5rem; /* Título maior */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem; /* Mais espaço abaixo do título */
+    display: flex; /* Para alinhar o ícone com o texto */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Espaço entre o ícone e o texto */
+    color: var(--text-color);
+}
+
+.faq-container h2 i {
+    color: var(--primary-color); /* Cor de destaque para o ícone */
+}
+.faq-item {
+  background: white;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+body.dark-mode .faq-item {
+  background: var(--white);
+}
+
+.faq-question {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dark-mode .faq-question {
+  color: white;
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-answer.active {
+  padding: 1.5rem;
+  max-height: 300px;
+}
+
+

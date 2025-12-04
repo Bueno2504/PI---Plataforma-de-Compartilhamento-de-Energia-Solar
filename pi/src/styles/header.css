@@ -1,0 +1,151 @@
+
+/* ===========================
+   Header
+   =========================== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode header {
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem ;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container img {
+  width: 40px;
+  height: 40px;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 7rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn-login {
+  background: var(--gradient);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.nav_item {
+  display: none;
+}
+
+#mobile_btn {
+  display: none;
+}
+
+#mobile_menu {
+  list-style-type: none;
+  padding: 1rem 2rem;
+  border: none;
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  right: 0px;
+  background: var(--bg-light);
+  height: 0px;
+  transition: .5s;
+  z-index: 10000;
+  opacity: 97%;
+  visibility: hidden;
+  overflow-y: hidden;
+}
+
+.dark-mode #mobile_menu {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  right: 0px;
+  background: var(--bg-light);
+  height: 0px;
+  transition: .5s;
+  z-index: 10000;
+  opacity: 97%;
+  visibility: hidden;
+  overflow-y: hidden;
+}
+
+
+#mobile_nav_list {
+  display: none;
+  list-style: none;
+
+}
+
+#mobile_nav_list li {
+  margin-bottom: 10px;
+
+}

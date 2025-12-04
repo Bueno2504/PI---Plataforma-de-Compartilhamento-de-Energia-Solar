@@ -1,0 +1,316 @@
+@import url(Styles.css);
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #f59e0b;
+    --accent-color: #10b981;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f8fafc;
+    --white: #ffffff;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --border-radius: 16px;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem ;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+body.dark-mode {
+    --primary-color: #38bdf8;
+    --primary-dark: #0ea5e9;
+    --secondary-color: #facc15;
+    --accent-color: #22c55e;
+    --text-dark: #f1f5f9;
+    --text-light: #94a3b8;
+    --bg-light: #0f172a;
+    --white: #1e293b;
+    background: #1e293b;
+}
+
+.login-container {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 0.8s forwards ease-out;
+}
+
+
+
+.dark-mode header {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-topo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#theme-toggle {
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg);
+}
+
+/* Container de Cadastro */
+.register-container {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 0.8s forwards ease-out;
+    margin: 120px auto 40px;
+}
+
+.dark-mode .register-container {
+    background: #0f172a;
+}
+
+/* Animação */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    color: #2d3748;
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.dark-mode h2 {
+    color: var(--text-dark);
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f7fafc;
+}
+
+.dark-mode input {
+    border: 2px solid #1e293b;
+    background: #0f172a;
+    color: var(--text-dark);
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.dark-mode input:focus {
+    border: 2px solid var(--primary-dark);
+    background: #1e293b;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dark-mode .btn-register {
+    background: var(--gradient);
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.login-text {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.login-text a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dark-mode .login-text a {
+    color: #0ea5e9;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .back-link a {
+            color: #0ea5e9;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .register-container {
+
+        padding: 60px 40px;
+        width: 100%;
+
+    }
+
+    h2 {
+        font-size: 26px;
+
+    }
+}
+
+@media (max-width: 480px) {
+    .register-container {
+        margin: 90px 15px 30px;
+        padding: 20px 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    input {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .btn-register {
+        padding: 14px;
+        font-size: 15px;
+    }
+}
